@@ -35,6 +35,9 @@ export class Level<KDefault = string, VDefault = string>
   getMany (keys: KDefault[]): Promise<(VDefault | undefined)[]>
   getMany<K = KDefault, V = VDefault> (keys: K[], options: GetManyOptions<K, V>): Promise<(V | undefined)[]>
 
+  has (key: KDefault): Promise<boolean>
+  has<K = KDefault> (key: K, options: HasOptions<K>): Promise<boolean>
+    
   put (key: KDefault, value: VDefault): Promise<void>
   put<K = KDefault, V = VDefault> (key: K, value: V, options: PutOptions<K, V>): Promise<void>
 
@@ -59,6 +62,7 @@ export type DatabaseOptions<K, V> = ClassicLevel.DatabaseOptions<K, V> & Browser
 export type OpenOptions = ClassicLevel.OpenOptions & BrowserLevel.OpenOptions
 export type GetOptions<K, V> = ClassicLevel.GetOptions<K, V> & BrowserLevel.GetOptions<K, V>
 export type GetManyOptions<K, V> = ClassicLevel.GetManyOptions<K, V> & BrowserLevel.GetManyOptions<K, V>
+export type HasOptions<K> = ClassicLevel.HasOptions<K> & AbstractLevel.AbstractHasOptions<K> // use BrowserLevel.HasOptions<K> when it's exported from browser-level
 export type PutOptions<K, V> = ClassicLevel.PutOptions<K, V> & BrowserLevel.PutOptions<K, V>
 export type DelOptions<K> = ClassicLevel.DelOptions<K> & BrowserLevel.DelOptions<K>
 
